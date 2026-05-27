@@ -1,0 +1,5 @@
+{
+  "name": "validation-zod",
+  "description": "Add request validation using Zod",
+  "frameworks": ["express"]
+}

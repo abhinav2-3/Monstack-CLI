@@ -1,0 +1,71 @@
+# <%= PROJECT_NAME %>
+
+This is a production-grade Express.js template using TypeScript and a Modular Monolith architecture.
+
+## Architecture Overview
+
+The project is structured into three main layers:
+
+- **Modules**: Contains business logic, grouped by feature (e.g., `health`).
+- **Shared**: Reusable utilities, middlewares, errors, and types.
+- **Infrastructure**: Low-level concerns like database connections.
+
+### Folder Structure
+
+```txt
+src/
+│
+├── modules/          # Feature-based modules
+│   ├── health/       # Health check module
+│
+├── shared/           # Cross-cutting concerns
+│   ├── errors/       # Centralized error classes
+│   ├── logger/       # Pino logger configuration
+│   ├── middlewares/  # Global express middlewares
+│   ├── utils/        # Generic helper functions
+│   ├── types/        # Shared TypeScript interfaces
+│
+├── infrastructure/   # External systems
+│   ├── database/     # Mongoose connection logic
+│
+├── config/           # Environment and app configuration
+│
+├── app.ts            # Express application setup
+├── server.ts         # Server entry point & graceful shutdown
+└── routes.ts         # Centralized route registration
+```
+
+## Features
+
+- **Scalable Architecture**: Modular Monolith design.
+- **Production Logger**: Pino with pretty-printing in development and JSON in production.
+- **Security**: Helmet, CORS, Compression, and Rate Limiting.
+- **Error Handling**: Centralized error middleware with custom `AppError` class.
+- **Env Validation**: Validates environment variables on startup.
+- **Graceful Shutdown**: Properly closes DB connections and server on termination signals.
+- **API Versioning**: Base path set to `/api/v1`.
+
+## Getting Started
+
+1.  **Install Dependencies**:
+    ```bash
+    <%= PACKAGE_MANAGER %> install
+    ```
+
+2.  **Setup Environment**:
+    Create a `.env` file based on `.env.example.ejs`.
+
+3.  **Run in Development**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run dev
+    ```
+
+4.  **Build for Production**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run build
+    ```
+
+5.  **Start Production Server**:
+    ```bash
+    <%= PACKAGE_MANAGER %> start
+    ```

@@ -1,0 +1,4 @@
+{
+  "name": "docker",
+  "description": "Add Docker support with Dockerfile and docker-compose"
+}

@@ -1,0 +1,7 @@
+{
+  "framework": "express",
+  "architecture": "modular",
+  "database": "mongodb",
+  "templateVersion": "1.0.0",
+  "description": "Express Modular Monolith with MongoDB"
+}

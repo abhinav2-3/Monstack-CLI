@@ -1,0 +1,5 @@
+{
+  "name": "swagger",
+  "description": "Add Swagger/OpenAPI documentation support",
+  "frameworks": ["express"]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@monstack-cli/cli",
+  "version": "0.1.0",
+  "description": "Interactive CLI for MonStack scaffolding",
+  "main": "dist/index.js",
+  "bin": {
+    "monstack": "dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx watch src/cli.ts",
+    "build": "tsup src/cli.ts --format cjs,esm --dts --clean",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "prompts": "^2.4.2",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "@monstack-cli/core": "file:../core"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.4",
+    "tsup": "^8.0.0",
+    "tsx": "^4.0.0"
+  }
+}

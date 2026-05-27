@@ -1,0 +1,10 @@
+{
+  "templates": [
+    {
+      "path": "express/modular/mongodb",
+      "framework": "express",
+      "architecture": "modular",
+      "database": "mongodb"
+    }
+  ]
+}
