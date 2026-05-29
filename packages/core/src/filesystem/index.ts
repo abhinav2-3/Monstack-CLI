@@ -6,7 +6,10 @@ export const copyFile = async (src: string, dest: string): Promise<void> => {
   await fs.copy(src, dest);
 };
 
-export const writeRenderedFile = async (dest: string, content: string): Promise<void> => {
+export const writeRenderedFile = async (
+  dest: string,
+  content: string,
+): Promise<void> => {
   await fs.ensureDir(path.dirname(dest));
   await fs.writeFile(dest, content, 'utf-8');
 };
@@ -34,7 +37,7 @@ export const exists = async (path: string): Promise<boolean> => {
 export const replaceInFile = async (
   filePath: string,
   searchValue: string | RegExp,
-  replaceValue: string
+  replaceValue: string,
 ): Promise<void> => {
   const content = await fs.readFile(filePath, 'utf-8');
   const updatedContent = content.replace(searchValue, replaceValue);

@@ -1,0 +1,7 @@
+{
+  "framework": "express",
+  "architecture": "traditional",
+  "database": "mongodb",
+  "templateVersion": "1.0.0",
+  "description": "Express Traditional Layered with MongoDB"
+}

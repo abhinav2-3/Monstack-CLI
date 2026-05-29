@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 
 export const renderTemplate = async (
   filePath: string,
-  data: Record<string, any>
+  data: Record<string, any>,
 ): Promise<string> => {
   const templateContent = await fs.readFile(filePath, 'utf-8');
   return ejs.render(templateContent, data);

@@ -1,5 +1,7 @@
 {
   "name": "swagger",
   "description": "Add Swagger/OpenAPI documentation support",
-  "frameworks": ["express"]
+  "frameworks": ["express"],
+  "architectures": ["modular", "traditional"],
+  "databases": ["mongodb", "postgres"]
 }

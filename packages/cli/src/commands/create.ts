@@ -21,7 +21,7 @@ export const createCommand = async (name?: string) => {
       architecture: responses.architecture as any,
       database: responses.database as any,
       packageManager: responses.packageManager as any,
-      features: responses.features
+      features: responses.features,
     };
 
     spinner.succeed(chalk.green('Configuration collected and validated!'));
@@ -34,7 +34,6 @@ export const createCommand = async (name?: string) => {
     console.log(chalk.white(`  ${config.packageManager} install`));
     console.log(chalk.white(`  ${config.packageManager} run dev`));
     console.log('\n');
-
   } catch (error: any) {
     console.error(chalk.red('\nAn error occurred during project setup:'));
     console.error(chalk.red(error.message || error));

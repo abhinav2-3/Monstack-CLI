@@ -1,23 +1,29 @@
 {
-  "name": "@monstack-cli/cli",
+  "name": "create-monstack-api",
   "version": "0.1.0",
-  "description": "Interactive CLI for MonStack scaffolding",
-  "main": "dist/index.js",
+  "description": "Production-grade backend scaffolding CLI",
+  "type": "module",
+  "main": "./dist/cli.js",
   "bin": {
-    "monstack": "dist/cli.js"
+    "create-monstack-api": "./dist/cli.js"
   },
+  "files": [
+    "dist",
+    "templates",
+    "features"
+  ],
   "scripts": {
-    "dev": "tsx watch src/cli.ts",
-    "build": "tsup src/cli.ts --format cjs,esm --dts --clean",
+    "dev": "tsx src/cli.ts",
+    "build": "tsup src/cli.ts --format esm --dts --clean",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write \"src/**/*.ts\""
   },
   "dependencies": {
-    "commander": "^11.0.0",
-    "prompts": "^2.4.2",
+    "@monstack-cli/core": "file:../core",
     "chalk": "^4.1.2",
+    "commander": "^11.0.0",
     "ora": "^5.4.1",
-    "@monstack-cli/core": "file:../core"
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@types/prompts": "^2.4.4",

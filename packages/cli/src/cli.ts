@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { Command } from 'commander';
 import { createCommand } from '@/commands/create';
 
@@ -19,7 +18,10 @@ program
 
 // Handle unknown commands
 program.on('command:*', () => {
-  console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '));
+  console.error(
+    'Invalid command: %s\nSee --help for a list of available commands.',
+    program.args.join(' '),
+  );
   process.exit(1);
 });
 

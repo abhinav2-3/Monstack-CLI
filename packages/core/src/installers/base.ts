@@ -12,16 +12,20 @@ export abstract class BaseInstaller implements Installer {
 
   async install(projectPath: string): Promise<void> {
     const { command, args } = this.getInstallCommand();
-    
-    console.log(chalk.cyan(`\n📦 Installing dependencies using ${this.getName()}...`));
-    
+
+    console.log(
+      chalk.cyan(`\n📦 Installing dependencies using ${this.getName()}...`),
+    );
+
     try {
       await execa(command, args, {
         cwd: projectPath,
         stdio: 'inherit',
       });
     } catch (error) {
-      throw new Error(`Failed to install dependencies using ${this.getName()}: ${error}`);
+      throw new Error(
+        `Failed to install dependencies using ${this.getName()}: ${error}`,
+      );
     }
   }
 }

@@ -1,0 +1,87 @@
+# <%= PROJECT_NAME %>
+
+This is a production-grade Express.js template using TypeScript and a Traditional architecture.
+
+## Architecture Overview
+
+The project is structured using a traditional layered architecture:
+
+- **Routes**: Route definitions and endpoint setup.
+- **Controllers**: Request handlers that process incoming requests.
+- **Services**: Business logic layer.
+- **Models**: Database models and schemas.
+- **Middlewares**: Shared middleware functions.
+- **Config**: Configuration and environment setup.
+- **Shared**: Utilities, errors, and logger.
+- **Infrastructure**: External systems like database connections.
+
+### Folder Structure
+
+```txt
+src/
+│
+├── routes/           # Route definitions
+│   └── ...           # Feature routes
+│
+├── controllers/      # Request handlers
+│   └── ...           # Feature controllers
+│
+├── services/         # Business logic
+│   └── ...           # Feature services
+│
+├── models/           # Database models
+│   └── ...           # Mongoose schemas
+│
+├── middlewares/      # Express middlewares
+│   └── ...           # Custom middleware functions
+│
+├── config/           # Configuration
+│   └── env.ts        # Environment variables
+│
+├── infrastructure/   # External systems
+│   ├── database/     # Mongoose connection logic
+│
+├── shared/           # Cross-cutting concerns
+│   ├── errors/       # Centralized error classes
+│   ├── logger/       # Pino logger configuration
+│   ├── utils/        # Generic helper functions
+│
+├── app.ts            # Express application setup
+├── server.ts         # Server entry point & graceful shutdown
+└── index.ts          # Application entry point
+```
+
+## Features
+
+- **Traditional Layered Architecture**: Clear separation of concerns.
+- **Production Logger**: Pino with pretty-printing in development and JSON in production.
+- **Security**: Helmet, CORS, Compression, and Rate Limiting.
+- **Error Handling**: Centralized error middleware with custom `AppError` class.
+- **Env Validation**: Validates environment variables on startup.
+- **Graceful Shutdown**: Properly closes DB connections and server on termination signals.
+- **API Versioning**: Base path set to `/api/v1`.
+
+## Getting Started
+
+1.  **Install Dependencies**:
+    ```bash
+    <%= PACKAGE_MANAGER %> install
+    ```
+
+2.  **Setup Environment**:
+    Create a `.env` file based on `.env.example.ejs`.
+
+3.  **Run in Development**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run dev
+    ```
+
+4.  **Build for Production**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run build
+    ```
+
+5.  **Start Production Server**:
+    ```bash
+    <%= PACKAGE_MANAGER %> start
+    ```

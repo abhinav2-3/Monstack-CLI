@@ -1,5 +1,7 @@
 {
   "name": "validation-zod",
   "description": "Add request validation using Zod",
-  "frameworks": ["express"]
+  "frameworks": ["express"],
+  "architectures": ["modular", "traditional"],
+  "databases": ["mongodb", "postgres"]
 }

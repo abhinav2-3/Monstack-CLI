@@ -2,7 +2,9 @@ import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 
-export const setupEnvironmentFiles = async (projectPath: string): Promise<void> => {
+export const setupEnvironmentFiles = async (
+  projectPath: string,
+): Promise<void> => {
   const examplePath = path.join(projectPath, '.env.example');
   const envPath = path.join(projectPath, '.env');
 

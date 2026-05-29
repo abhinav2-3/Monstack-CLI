@@ -1,8 +1,13 @@
 import path from 'path';
 import fs from 'fs-extra';
 import chalk from 'chalk';
-import { GeneratorConfig, FeatureMetadata, FeatureDependencies } from '@/types';
+import { GeneratorConfig, FeatureDependencies } from '@/types';
 import { getAllFiles, copyFile } from '@/filesystem';
+import {
+  renderTemplate,
+  isTemplateFile,
+  getTargetFileName,
+} from '@/template-engine';
 
 export class FeatureManager {
   private readonly featuresBaseDir: string;
@@ -11,34 +16,59 @@ export class FeatureManager {
     this.featuresBaseDir = path.resolve(__dirname, '../../features');
   }
 
-  async applyFeatures(projectPath: string, config: GeneratorConfig): Promise<void> {
+  async applyFeatures(
+    projectPath: string,
+    config: GeneratorConfig,
+    renderData?: Record<string, any>,
+  ): Promise<void> {
     if (!config.features || config.features.length === 0) return;
 
     console.log(chalk.cyan('\n🧩 Applying features...'));
 
     for (const featureName of config.features) {
-      await this.applyFeature(featureName, projectPath, config);
+      await this.applyFeature(featureName, projectPath, config, renderData);
     }
   }
 
-  private async applyFeature(featureName: string, projectPath: string, config: GeneratorConfig): Promise<void> {
+  private async applyFeature(
+    featureName: string,
+    projectPath: string,
+    config: GeneratorConfig,
+    renderData?: Record<string, any>,
+  ): Promise<void> {
     const featureDir = path.join(this.featuresBaseDir, featureName);
 
     if (!(await fs.pathExists(featureDir))) {
-      console.warn(chalk.yellow(`⚠️ Feature ${featureName} not found at ${featureDir}`));
+      console.warn(
+        chalk.yellow(`⚠️ Feature ${featureName} not found at ${featureDir}`),
+      );
       return;
     }
 
     console.log(chalk.blue(`  - Applying ${featureName}...`));
 
-    // 1. Copy Files
+    // 1. Copy Files with EJS rendering support
     const filesDir = path.join(featureDir, 'files');
     if (await fs.pathExists(filesDir)) {
       const files = await getAllFiles(filesDir);
       for (const file of files) {
         const relativePath = path.relative(filesDir, file);
-        const targetPath = path.join(projectPath, relativePath);
-        await copyFile(file, targetPath);
+        const targetPath = path.join(
+          projectPath,
+          isTemplateFile(relativePath)
+            ? getTargetFileName(relativePath)
+            : relativePath,
+        );
+
+        // If it's an EJS template, render it
+        if (isTemplateFile(file)) {
+          const templateData = renderData || {};
+          const renderedContent = await renderTemplate(file, templateData);
+          await fs.ensureDir(path.dirname(targetPath));
+          await fs.writeFile(targetPath, renderedContent, 'utf-8');
+        } else {
+          await copyFile(file, targetPath);
+        }
       }
     }
 
@@ -64,12 +94,18 @@ export class FeatureManager {
           await featureModule.postApply(projectPath, config);
         }
       } catch (error) {
-        console.error(chalk.red(`  - Error running postApply hook for ${featureName}:`), error);
+        console.error(
+          chalk.red(`  - Error running postApply hook for ${featureName}:`),
+          error,
+        );
       }
     }
   }
 
-  private async mergeDependencies(projectPath: string, featureDeps: FeatureDependencies): Promise<void> {
+  private async mergeDependencies(
+    projectPath: string,
+    featureDeps: FeatureDependencies,
+  ): Promise<void> {
     const pkgPath = path.join(projectPath, 'package.json');
     if (!(await fs.pathExists(pkgPath))) return;
 
@@ -80,7 +116,10 @@ export class FeatureManager {
     }
 
     if (featureDeps.devDependencies) {
-      pkg.devDependencies = { ...pkg.devDependencies, ...featureDeps.devDependencies };
+      pkg.devDependencies = {
+        ...pkg.devDependencies,
+        ...featureDeps.devDependencies,
+      };
     }
 
     await fs.writeJson(pkgPath, pkg, { spaces: 2 });

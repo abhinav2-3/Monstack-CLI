@@ -1,4 +1,7 @@
 {
   "name": "docker",
-  "description": "Add Docker support with Dockerfile and docker-compose"
+  "description": "Add Docker support with Dockerfile and docker-compose",
+  "frameworks": ["express"],
+  "architectures": ["modular", "traditional"],
+  "databases": ["mongodb", "postgres"]
 }
