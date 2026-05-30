@@ -34,6 +34,8 @@ export const generateProject = async (
     PORT: 3000, // Default port for now
     PACKAGE_MANAGER: config.packageManager,
     NODE_ENV: 'development',
+    DATABASE: config.database,
+    ORM: config.orm,
   };
 
   // 1. Generate Files

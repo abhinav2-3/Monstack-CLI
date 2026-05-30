@@ -1,0 +1,7 @@
+{
+  "name": "Express Modular PostgreSQL",
+  "description": "Express application with modular architecture, PostgreSQL and Prisma ORM",
+  "framework": "express",
+  "architecture": "modular",
+  "database": "postgres"
+}

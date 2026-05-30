@@ -1,0 +1,7 @@
+{
+  "name": "Express Traditional PostgreSQL",
+  "description": "Express application with traditional architecture, PostgreSQL and Prisma ORM",
+  "framework": "express",
+  "architecture": "traditional",
+  "database": "postgres"
+}

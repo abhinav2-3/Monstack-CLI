@@ -1,0 +1,89 @@
+# <%= PROJECT_NAME %>
+
+This is a production-grade Express.js template using TypeScript and a Traditional architecture with PostgreSQL and Prisma.
+
+## Architecture Overview
+
+The project is structured using a traditional layered architecture:
+
+- **Routes**: Route definitions and endpoint setup.
+- **Controllers**: Request handlers that process incoming requests.
+- **Services**: Business logic layer.
+- **Config**: Configuration, environment setup, and Prisma client.
+- **Middlewares**: Shared middleware functions.
+- **Shared**: Utilities, errors, and logger.
+
+### Folder Structure
+
+```txt
+src/
+│
+├── routes/           # Route definitions
+│
+├── controllers/      # Request handlers
+│
+├── services/         # Business logic
+│
+├── config/           # Configuration
+│   ├── env.ts        # Environment variables
+│   └── prisma.ts     # Prisma client instance
+│
+├── middlewares/      # Express middlewares
+│
+├── shared/           # Cross-cutting concerns
+│   ├── errors/       # Centralized error classes
+│   ├── logger/       # Pino logger configuration
+│   ├── utils/        # Generic helper functions
+│
+├── app.ts            # Express application setup
+└── server.ts         # Server entry point & graceful shutdown
+
+prisma/
+└── schema.prisma     # Prisma schema definition
+```
+
+## Features
+
+- **Traditional Layered Architecture**: Clear separation of concerns.
+- **PostgreSQL & Prisma**: Modern ORM with type-safety and migrations.
+- **Production Logger**: Pino with pretty-printing in development and JSON in production.
+- **Security**: Helmet, CORS, Compression, and Rate Limiting.
+- **Error Handling**: Centralized error middleware with custom `AppError` class.
+- **Env Validation**: Validates environment variables on startup.
+- **Graceful Shutdown**: Properly closes Prisma connection and server on termination signals.
+- **Health Checks**: Database status verification endpoint.
+
+## Getting Started
+
+1.  **Install Dependencies**:
+    ```bash
+    <%= PACKAGE_MANAGER %> install
+    ```
+
+2.  **Setup Environment**:
+    Create a `.env` file based on `.env.example`. Make sure to set `DATABASE_URL`.
+
+3.  **Run Migrations**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run prisma:migrate
+    ```
+
+4.  **Generate Prisma Client**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run prisma:generate
+    ```
+
+5.  **Run in Development**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run dev
+    ```
+
+6.  **Build for Production**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run build
+    ```
+
+7.  **Start Production Server**:
+    ```bash
+    <%= PACKAGE_MANAGER %> start
+    ```

@@ -4,6 +4,8 @@ export type Architecture = 'traditional' | 'modular';
 
 export type Database = 'mongodb' | 'postgres';
 
+export type ORM = 'mongoose' | 'prisma';
+
 export type PackageManager = 'npm' | 'pnpm' | 'yarn';
 
 export interface GeneratorConfig {
@@ -11,6 +13,7 @@ export interface GeneratorConfig {
   framework: Framework;
   architecture: Architecture;
   database: Database;
+  orm: ORM;
   packageManager: PackageManager;
   features: string[];
 }

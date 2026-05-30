@@ -1,0 +1,54 @@
+# PostgreSQL Setup Guide
+
+Your project has been generated with PostgreSQL and Prisma support. Follow these steps to get your database up and running.
+
+## 1. Install PostgreSQL
+
+If you don't have PostgreSQL installed, you can download it from [postgresql.org](https://www.postgresql.org/download/).
+
+Alternatively, if you enabled the **Docker** feature, you can run PostgreSQL using Docker Compose:
+
+```bash
+docker-compose up -d postgres
+```
+
+## 2. Configure DATABASE_URL
+
+Open your `.env` file and ensure the `DATABASE_URL` is correct.
+
+Example:
+```env
+DATABASE_URL=postgresql://postgres:password@localhost:5432/app_db
+```
+
+## 3. Run Prisma Migrations
+
+To create the database tables based on your `prisma/schema.prisma`, run:
+
+```bash
+<%= PACKAGE_MANAGER %> run prisma:migrate
+```
+
+This will also generate the Prisma Client.
+
+## 4. Run Prisma Generate
+
+If you make changes to `prisma/schema.prisma`, run:
+
+```bash
+<%= PACKAGE_MANAGER %> run prisma:generate
+```
+
+## 5. Prisma Studio
+
+To view and edit your data in a GUI, run:
+
+```bash
+<%= PACKAGE_MANAGER %> run prisma:studio
+```
+
+## 6. Start the Application
+
+```bash
+<%= PACKAGE_MANAGER %> run dev
+```

@@ -7,6 +7,7 @@ export interface PromptResult {
   framework: string;
   architecture: string;
   database: string;
+  orm: string;
   packageManager: string;
   features: string[];
 }

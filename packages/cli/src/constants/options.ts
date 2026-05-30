@@ -10,6 +10,11 @@ export const DATABASES = [
   { title: 'PostgreSQL', value: 'postgres' },
 ] as const;
 
+export const ORMS = [
+  { title: 'Mongoose', value: 'mongoose', db: 'mongodb' },
+  { title: 'Prisma', value: 'prisma', db: 'postgres' },
+] as const;
+
 export const PACKAGE_MANAGERS = [
   { title: 'npm', value: 'npm' },
   { title: 'yarn', value: 'yarn' },

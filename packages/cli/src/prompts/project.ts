@@ -4,6 +4,7 @@ import {
   FRAMEWORKS,
   ARCHITECTURES,
   DATABASES,
+  ORMS,
   PACKAGE_MANAGERS,
   FEATURES,
 } from '@/constants/options';
@@ -42,6 +43,17 @@ export const runProjectPrompts = async (): Promise<PromptResult> => {
       name: 'database',
       message: 'Select a database',
       choices: DATABASES as any,
+      initial: 0,
+    },
+    {
+      type: (prev) => (prev ? 'select' : null),
+      name: 'orm',
+      message: 'Select an ORM',
+      choices: (prev) =>
+        ORMS.filter((orm) => orm.db === prev).map((orm) => ({
+          title: orm.title,
+          value: orm.value,
+        })) as any,
       initial: 0,
     },
     {

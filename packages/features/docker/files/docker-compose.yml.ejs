@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - '<%= PORT %>:<%= PORT %>'
+    environment:
+      - NODE_ENV=production
+      - PORT=<%= PORT %>
+<% if (DATABASE === 'mongodb') { -%>
+      - DATABASE_URL=mongodb://mongodb:27017/monstack-db
+    depends_on:
+      - mongodb
+<% } else if (DATABASE === 'postgres') { -%>
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/app_db
+    depends_on:
+      - postgres
+<% } -%>
+
+<% if (DATABASE === 'mongodb') { -%>
+  mongodb:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb_data:/data/db
+<% } else if (DATABASE === 'postgres') { -%>
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+<% } -%>
+
+volumes:
+<% if (DATABASE === 'mongodb') { -%>
+  mongodb_data:
+<% } else if (DATABASE === 'postgres') { -%>
+  postgres_data:
+<% } -%>

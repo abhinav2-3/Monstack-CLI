@@ -1,0 +1,85 @@
+# <%= PROJECT_NAME %>
+
+This is a production-grade Express.js template using TypeScript and a Modular Monolith architecture with PostgreSQL and Prisma.
+
+## Architecture Overview
+
+The project is structured using a Modular Monolith architecture:
+
+- **Modules**: Self-contained feature modules (e.g., users, auth).
+- **Infrastructure**: Shared technical infrastructure like database and external clients.
+- **Config**: Global configuration and environment variables.
+- **Shared**: Shared domain logic, errors, logger, and middlewares.
+
+### Folder Structure
+
+```txt
+src/
+│
+├── modules/          # Feature modules
+│   └── health/       # Health module
+│
+├── infrastructure/   # External systems
+│   └── database/     # Prisma client logic
+│
+├── config/           # Configuration
+│   └── env.ts        # Environment variables
+│
+├── shared/           # Cross-cutting concerns
+│   ├── errors/       # Centralized error classes
+│   ├── logger/       # Pino logger configuration
+│   ├── middlewares/  # Express middlewares
+│   └── utils/        # Generic helper functions
+│
+├── app.ts            # Express application setup
+└── server.ts         # Server entry point & graceful shutdown
+
+prisma/
+└── schema.prisma     # Prisma schema definition
+```
+
+## Features
+
+- **Modular Monolith Architecture**: High cohesion and low coupling.
+- **PostgreSQL & Prisma**: Modern ORM with type-safety and migrations.
+- **Production Logger**: Pino with pretty-printing in development and JSON in production.
+- **Security**: Helmet, CORS, Compression, and Rate Limiting.
+- **Error Handling**: Centralized error middleware with custom `AppError` class.
+- **Env Validation**: Validates environment variables on startup.
+- **Graceful Shutdown**: Properly closes Prisma connection and server on termination signals.
+- **Health Checks**: Database status verification endpoint.
+
+## Getting Started
+
+1.  **Install Dependencies**:
+    ```bash
+    <%= PACKAGE_MANAGER %> install
+    ```
+
+2.  **Setup Environment**:
+    Create a `.env` file based on `.env.example`. Make sure to set `DATABASE_URL`.
+
+3.  **Run Migrations**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run prisma:migrate
+    ```
+
+4.  **Generate Prisma Client**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run prisma:generate
+    ```
+
+5.  **Run in Development**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run dev
+    ```
+
+6.  **Build for Production**:
+    ```bash
+    <%= PACKAGE_MANAGER %> run build
+    ```
+
+7.  **Start Production Server**:
+    ```bash
+    <%= PACKAGE_MANAGER %> start
+    ```
