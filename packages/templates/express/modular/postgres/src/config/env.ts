@@ -4,7 +4,7 @@ import path from 'path';
 dotenv.config({ path: path.join(__dirname, '../../.env') });
 
 const validateEnv = () => {
-  const requiredEnv = ['NODE_ENV', 'PORT', 'MONGO_URI'];
+  const requiredEnv = ['NODE_ENV', 'PORT', 'DATABASE_URL'];
   const missingEnv = requiredEnv.filter((env) => !process.env[env]);
 
   if (missingEnv.length > 0) {
@@ -19,5 +19,5 @@ validateEnv();
 export const env = {
   nodeEnv: process.env.NODE_ENV as string,
   port: parseInt(process.env.PORT as string, 10),
-  mongoUri: process.env.MONGO_URI as string,
+  databaseUrl: process.env.DATABASE_URL as string,
 };

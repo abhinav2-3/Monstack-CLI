@@ -33,22 +33,27 @@ npx monstack-cli init
 - Node.js 18+
 - npm / pnpm / yarn
 
-### Install
+### Installation & Usage
+
+#### Option 1: Run directly (Recommended)
+You can initialize a project without installing the CLI globally:
 
 ```bash
-# Run directly (recommended)
 npx monstack-cli init
+```
 
-# Or install globally
+#### Option 2: Install globally
+If you prefer to have the CLI available everywhere:
+
+```bash
+# Install globally
 npm install -g monstack-cli
+
+# Initialize a project
 monstack init
 ```
 
 ### Usage
-
-```bash
-monstack init
-```
 
 The CLI will interactively prompt you to configure your project:
 

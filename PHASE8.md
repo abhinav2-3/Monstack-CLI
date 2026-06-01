@@ -11,7 +11,7 @@ This phase should allow users to generate production-ready PostgreSQL applicatio
 # Expected User Experience
 
 ```bash
-npx create-monstack-api
+npx monstack-cli init
 ```
 
 Interactive setup:
