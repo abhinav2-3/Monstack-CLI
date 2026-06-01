@@ -6,17 +6,15 @@ import { generateProject } from '@monstack-cli/core';
 
 export const createCommand = async (name?: string) => {
   try {
-    const responses = await runProjectPrompts();
+    const responses = await runProjectPrompts(name);
 
-    // If name was provided via CLI arg, override prompt value
-    if (name) {
-      responses.projectName = name;
-    }
+    // If name was provided via CLI arg, it might not be in responses if prompt was skipped
+    const projectName = name || responses.projectName;
 
     const spinner = ora('Processing your configuration...').start();
 
     const config: CliConfig = {
-      projectName: responses.projectName,
+      projectName,
       framework: responses.framework as any,
       architecture: responses.architecture as any,
       database: responses.database as any,

@@ -11,17 +11,19 @@ import {
 import { validateProjectName } from '@/validators/project';
 import { PromptResult } from '@/types';
 
-export const runProjectPrompts = async (): Promise<PromptResult> => {
+export const runProjectPrompts = async (
+  initialName?: string,
+): Promise<PromptResult> => {
   console.log(
     chalk.cyan("\n🚀 Welcome to MonStack CLI! Let's set up your project.\n"),
   );
 
   const questions: prompts.PromptObject[] = [
     {
-      type: 'text',
+      type: initialName ? null : 'text',
       name: 'projectName',
       message: 'What is your project name?',
-      initial: 'my-monstack-app',
+      initial: initialName || 'my-monstack-app',
       validate: validateProjectName,
     },
     {

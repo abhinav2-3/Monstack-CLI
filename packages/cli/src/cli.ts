@@ -5,8 +5,20 @@ const program = new Command();
 
 program
   .name('monstack')
-  .description('Production-ready CLI scaffolding tool for backend applications')
-  .version('0.1.0');
+  .description('Production-grade CLI scaffolding tool for backend applications')
+  .version('0.1.0')
+  .argument('[name]', 'Name of the project')
+  .action(async (name: string | undefined) => {
+    await createCommand(name);
+  });
+
+program
+  .command('init')
+  .description('Initialize a new backend project')
+  .argument('[name]', 'Name of the project')
+  .action(async (name: string | undefined) => {
+    await createCommand(name);
+  });
 
 program
   .command('create')
@@ -15,6 +27,7 @@ program
   .action(async (name: string | undefined) => {
     await createCommand(name);
   });
+
 
 // Handle unknown commands
 program.on('command:*', () => {
@@ -26,8 +39,3 @@ program.on('command:*', () => {
 });
 
 program.parse(process.argv);
-
-// If no arguments provided, show help
-if (!process.argv.slice(2).length) {
-  program.outputHelp();
-}

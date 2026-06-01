@@ -1,11 +1,12 @@
 {
-  "name": "create-monstack-api",
+  "name": "monstack-cli",
   "version": "0.1.0",
   "description": "Production-grade backend scaffolding CLI",
   "type": "module",
   "main": "./dist/cli.js",
   "bin": {
-    "create-monstack-api": "./dist/cli.js"
+    "monstack": "./dist/cli.js",
+    "monstack-cli": "./dist/cli.js"
   },
   "files": [
     "dist",
