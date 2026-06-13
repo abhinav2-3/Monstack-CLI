@@ -1,8 +1,5 @@
 import execa from 'execa';
 import chalk from 'chalk';
-import { logger } from '@/shared/logger/logger'; // Wait, core doesn't have shared/logger yet, that was in templates.
-// I'll just use console.log or a simple logger in core if needed.
-// Actually, let's just use console.log for now to match the style of other core systems.
 
 export const initializeGit = async (projectPath: string): Promise<void> => {
   console.log(chalk.cyan('\ngit Initializing git repository...'));

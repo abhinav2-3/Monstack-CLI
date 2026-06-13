@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs-extra';
-import { FeatureMetadata } from '@/types';
+import { FeatureMetadata } from '../types';
+import { getFeaturesPath } from '../constants/paths';
 
 export interface RegisteredFeature {
   name: string;
@@ -13,7 +14,7 @@ export class FeatureRegistry {
   private readonly featuresBaseDir: string;
 
   constructor() {
-    this.featuresBaseDir = path.resolve(__dirname, '../../features');
+    this.featuresBaseDir = getFeaturesPath();
   }
 
   /**

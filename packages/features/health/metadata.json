@@ -1,0 +1,7 @@
+{
+  "name": "health",
+  "description": "Add health check endpoint (/api/v1/health)",
+  "frameworks": ["express"],
+  "architectures": ["modular", "traditional"],
+  "databases": ["mongodb", "postgres"]
+}

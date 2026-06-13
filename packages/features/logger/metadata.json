@@ -1,0 +1,7 @@
+{
+  "name": "logger",
+  "description": "Add Pino-based structured logging with HTTP request logging",
+  "frameworks": ["express"],
+  "architectures": ["modular", "traditional"],
+  "databases": ["mongodb", "postgres"]
+}

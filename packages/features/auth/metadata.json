@@ -1,0 +1,7 @@
+{
+  "name": "auth",
+  "description": "Add JWT Authentication (Coming Soon)",
+  "frameworks": ["express"],
+  "architectures": ["modular", "traditional"],
+  "databases": ["mongodb", "postgres"]
+}

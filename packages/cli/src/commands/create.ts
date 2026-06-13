@@ -1,8 +1,13 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
 import ora from 'ora';
 import chalk from 'chalk';
 import { runProjectPrompts } from '@/prompts/project';
 import { CliConfig } from '@/types';
 import { generateProject } from '@monstack-cli/core';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const createCommand = async (name?: string) => {
   try {
@@ -24,8 +29,13 @@ export const createCommand = async (name?: string) => {
 
     spinner.succeed(chalk.green('Configuration collected and validated!'));
 
+    // Calculate assets root (templates and features)
+    // In dev: packages/cli/src/commands -> ../../../
+    // In dist: packages/cli/dist -> ../
+    const assetsRoot = path.resolve(__dirname, '../../');
+
     // Trigger Generation
-    await generateProject(config);
+    await generateProject(config, { assetsRoot });
 
     console.log(chalk.cyan('\nNext steps:'));
     console.log(chalk.white(`  cd ${config.projectName}`));

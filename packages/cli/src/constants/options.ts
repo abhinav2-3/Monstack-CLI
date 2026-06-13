@@ -24,6 +24,8 @@ export const PACKAGE_MANAGERS = [
 export const FEATURES = [
   { title: 'Docker', value: 'docker' },
   { title: 'Swagger/OpenAPI', value: 'swagger' },
+  { title: 'Pino Logger', value: 'logger' },
+  { title: 'Health Check', value: 'health' },
   { title: 'Authentication', value: 'auth' },
   { title: 'Unit Testing', value: 'testing' },
   { title: 'Redis', value: 'redis' },

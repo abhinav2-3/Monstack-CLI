@@ -3,8 +3,6 @@ import helmet from 'helmet';
 import cors from 'cors';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
-import pinoHttp from 'pino-http';
-import { logger } from '@/shared/logger/logger';
 import { errorHandler } from '@/shared/middlewares/errorHandler';
 import routes from '@/routes';
 
@@ -27,7 +25,6 @@ app.use(limiter);
 // Global Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(pinoHttp({ logger }));
 
 // API Routes
 app.use('/api/v1', routes);

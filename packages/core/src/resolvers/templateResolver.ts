@@ -1,13 +1,15 @@
 import path from 'path';
-import { GeneratorConfig } from '@/types';
-import { exists } from '@/filesystem';
+import { GeneratorConfig } from '../types';
+import { exists } from '../filesystem';
+import { getTemplatesPath } from '../constants/paths';
 
 export const resolveTemplatePath = async (
   config: GeneratorConfig,
+  assetsRoot?: string,
 ): Promise<string> => {
-  // In development, we look for templates in the workspace
-  // In production, this might be different
-  const templateBaseDir = path.resolve(__dirname, '../../templates');
+  const templateBaseDir = assetsRoot
+    ? path.join(assetsRoot, 'templates')
+    : getTemplatesPath();
 
   const templatePath = path.join(
     templateBaseDir,

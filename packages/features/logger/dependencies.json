@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "pino": "^8.15.1",
+    "pino-http": "^8.5.0"
+  },
+  "devDependencies": {
+    "pino-pretty": "^10.2.0"
+  }
+}

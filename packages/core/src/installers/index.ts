@@ -1,6 +1,6 @@
 import { Installer } from './base';
 import { NpmInstaller, PnpmInstaller, YarnInstaller } from './implementations';
-import { PackageManager } from '@/types';
+import { PackageManager } from '../types';
 
 export const resolveInstaller = (packageManager: PackageManager): Installer => {
   switch (packageManager) {

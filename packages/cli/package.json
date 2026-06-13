@@ -1,6 +1,9 @@
 {
   "name": "monstack-cli",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Production-grade backend scaffolding CLI",
   "type": "module",
   "main": "./dist/cli.js",
@@ -15,19 +18,22 @@
   ],
   "scripts": {
     "dev": "tsx src/cli.ts",
-    "build": "tsup src/cli.ts --format esm --dts --clean",
+    "build": "tsup src/cli.ts --format esm --dts --clean && node scripts/copy-assets.js",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write \"src/**/*.ts\""
   },
   "dependencies": {
-    "@monstack-cli/core": "file:../core",
+    "@abhinav2-3/core": "^0.1.0",
     "chalk": "^4.1.2",
     "commander": "^11.0.0",
     "ora": "^5.4.1",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "@types/prompts": "^2.4.4",
+    "fs-extra": "^11.3.5",
     "tsup": "^8.0.0",
     "tsx": "^4.0.0"
   }
